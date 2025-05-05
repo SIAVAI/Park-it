@@ -36,6 +36,7 @@
     "react-router-dom": "^7.5.1",
     "react-tabs": "^6.1.0",
     "react-transition-group": "^4.4.5",
+    "react-typewriter-effect": "^1.1.0",
     "sort-by": "^1.2.0",
     "swiper": "^11.2.6",
     "tailwindcss": "^4.1.4"

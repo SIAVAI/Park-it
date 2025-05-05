@@ -185,7 +185,7 @@ async function run() {
     });
     // Create a new parking spot
     app.post("/parking", async (req, res) => {
-      const reviews = [3, 4];
+      const reviews = [];
       const isAvailable = true;
       try {
         const parkingSpot = req.body;
@@ -207,21 +207,30 @@ async function run() {
         res.status(500).send({ error: "Failed to create parking spot" });
       }
     });
-    // Update a parking spot by ID
+    // Update a parking spot by ID and reviews
     app.put("/parking/:id", async (req, res) => {
       try {
         const id = req.params.id;
-        const parkingSpot = req.body;
+        const { rating, reviewText, name, email, photoURL } = req.body;
+        if (!id) {
+          return res.status(400).send({ error: "ID is missing" });
+        }
+        console.log("Received ID:", id);
 
         const filter = { _id: new ObjectId(id) };
-        const options = { upsert: true };
-        const updateDoc = { $set: parkingSpot };
+        const newReview = {
+          rating,
+          reviewText,
+          name,
+          email,
+          photoURL,
+          date: new Date(),
+        };
+        const updateDoc = {
+          $push: { reviews: newReview },
+        };
 
-        const result = await parkingCollection.updateOne(
-          filter,
-          updateDoc,
-          options
-        );
+        const result = await parkingCollection.updateOne(filter, updateDoc);
 
         if (result.modifiedCount === 0) {
           return res
@@ -229,9 +238,11 @@ async function run() {
             .send({ error: "Parking spot not found or no changes made" });
         }
 
-        res.status(200).send(result);
+        res
+          .status(200)
+          .send({ success: true, message: "Review added successfully" });
       } catch (error) {
-        console.error(error);
+        console.error("Error updating parking spot:", error);
         res.status(500).send({ error: "Failed to update parking spot" });
       }
     });
@@ -263,21 +274,11 @@ async function run() {
       res.send(result);
     });
 
-    app.get("/bookings/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const booking = await bookingsCollection.findOne(query);
-      if (!booking) {
-        return res.status(404).send({ error: "Booking not found" });
-      }
-      res.status(200).send(booking);
-    });
-
     app.get("/bookings/:email", async (req, res) => {
       const email = req.params.email;
-      const query = { email: email };
+      const query = { userEmail: email };
       const booking = await bookingsCollection.find(query).toArray();
-      if (!booking) {
+      if (booking.length === 0) {
         return res.status(404).send({ error: "Booking not found" });
       }
       res.status(200).send(booking);

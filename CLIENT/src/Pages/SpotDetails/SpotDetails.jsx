@@ -16,6 +16,7 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { FaCreditCard } from "react-icons/fa6";
 
 const SpotDetails = () => {
   const spot = useLoaderData();
@@ -206,6 +207,7 @@ const SpotDetails = () => {
 
           {/* Card Details Input */}
           <div className="form-field">
+            <FaCreditCard className="mt-10 mb-4 text-4xl " />
             <label className="input-label">Card Number</label>
             <CardNumberElement
               options={{

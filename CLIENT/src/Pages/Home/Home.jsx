@@ -4,11 +4,13 @@ import HowItWorks from "./HowItWorks";
 import KeyFeatures from "./KeyFeatures";
 import ReviewSection from "./ReviewSection";
 import "animate.css";
+import Statistics from "./Statistics";
 
 const Home = () => {
   return (
     <div>
       <Header />
+      <Statistics />
       <KeyFeatures />
       <DiscountSection />
       <HowItWorks />

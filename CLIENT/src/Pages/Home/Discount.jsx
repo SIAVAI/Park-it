@@ -21,7 +21,7 @@ const DiscountSection = () => {
         </p>
 
         {/* Discount Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row justify-center items-center gap-2">
           {/* Weekly Discount */}
           <div
             className="card w-96 bg-base-100 shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl neon-effect border-2 border-[#00d0b3] p-4"
@@ -199,7 +199,7 @@ const DiscountSection = () => {
           </div>
 
           {/* Weekend Discount */}
-          <div
+          {/* <div
             className="card w-96 bg-base-100 shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl neon-effect border-2 border-[#00d0b3] p-4"
             data-aos="fade-up"
             data-aos-delay="900"
@@ -237,7 +237,7 @@ const DiscountSection = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

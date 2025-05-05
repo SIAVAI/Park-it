@@ -69,11 +69,11 @@ const AllUsers = () => {
             <div className="card-body items-center text-center">
               <p className="font-bold">{user.role.toUpperCase()}</p>
               <p>{user.phone}</p>
-              <p className="text-gray-500">{user.name}</p>
+              <p className="text-amber-500">{user.name}</p>
               <p>{user.email}</p>
 
               <div className="card-actions mt-4 hover:scale-105 transition-transform duration-300 ease-in-out">
-                <button className="btn btn-primary">
+                <button className="btn bg-gray-500">
                   <Link to={`/users/${user.email}`} className="text-white">
                     View Profile
                   </Link>
