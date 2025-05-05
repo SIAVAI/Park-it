@@ -1,0 +1,112 @@
+@import url("https://unpkg.com/leaflet@1.7.1/dist/leaflet.css");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Condensed+One&display=swap");
+@import "tailwindcss";
+@plugin "daisyui";
+/* Add this to your index.css or App.css */
+
+:root {
+  --font-primary: "Roboto", sans-serif;
+  --font-secondary: "Lora", serif;
+
+  /* Light mode background color */
+  --background-light: #ffffff;
+  --background-dark: #121212;
+  --text-light: #000000;
+  --text-dark: #ffffff;
+
+  /* Theme */
+
+  --primary-color: #000000;
+
+  --secondary-color: #00d0b3;
+
+  --background-light: #f6f6f6;
+
+  --background-dark: #121212;
+
+  --text-light: #1f1f1f;
+
+  --text-dark: #ffffff;
+}
+
+body {
+  font-family: var(--font-primary);
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-light);
+  color: var(--text-light);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-secondary);
+}
+
+.dark body {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 4px;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: #fff;
+  border-radius: 4px;
+}
+
+.container {
+  padding: 16px;
+  margin: 0 auto;
+}
+
+/* Neon Effect for Card Hover */
+.neon-effect {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.neon-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  opacity: 0.5;
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+  filter: blur(10px);
+  z-index: -1;
+}
+
+.neon-effect:hover {
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.7), 0 0 40px rgba(0, 255, 255, 0.7);
+
+  z-index: 1;
+}
+
+.map-container {
+  margin-top: 20px;
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.filters label {
+  margin-right: 10px;
+}
