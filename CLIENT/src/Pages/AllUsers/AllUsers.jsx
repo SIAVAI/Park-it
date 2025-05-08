@@ -75,7 +75,7 @@ const AllUsers = () => {
               <div className="card-actions mt-4 hover:scale-105 transition-transform duration-300 ease-in-out">
                 <button className="btn bg-gray-500">
                   <Link to={`/users/${user.email}`} className="text-white">
-                    View Profile
+                    update
                   </Link>
                 </button>
               </div>

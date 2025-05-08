@@ -6,8 +6,10 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { BsBookmarkDashFill } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
+import { Pie } from "react-chartjs-2";
 
 import { Line } from "react-chartjs-2";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,6 +19,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  ArcElement,
 } from "chart.js";
 
 // Register the components of ChartJS
@@ -27,7 +30,9 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ArcElement,
+  LinearScale
 );
 
 const Profile = () => {
@@ -150,8 +155,10 @@ const Profile = () => {
       setEmail(user.email);
       setPhotoURL(user.photoURL);
       fetchSpots();
-      fetchPaymentHistory();
       fetchBookings();
+      if (user.role === "admin") {
+        fetchPaymentHistory();
+      }
     }
 
     if (spots.length > 0) {
@@ -236,10 +243,96 @@ const Profile = () => {
     },
   };
 
+  // Pie Chart Data Preparation
+  const spotStats = spots.map((spot) => {
+    const totalBookings = bookings.filter(
+      (booking) => booking.spotId === spot._id
+    ).length;
+    const avgRating = spot.reviews.length
+      ? (
+          spot.reviews.reduce(
+            (sum, review) => sum + parseFloat(review.rating),
+            0
+          ) / spot.reviews.length
+        ).toFixed(2)
+      : 0;
+
+    return {
+      name: spot.name,
+      totalBookings: totalBookings,
+      avgRating: avgRating,
+    };
+  });
+  const pieChartData = {
+    labels: spotStats.map((spot) => spot.name),
+    datasets: [
+      {
+        label: "Bookings per Spot",
+        data: spotStats.map((spot) => spot.totalBookings),
+        backgroundColor: [
+          "#ff6384", // Light Pink
+          "#36a2eb", // Sky Blue
+          "#cc65fe", // Purple
+          "#ffce56", // Yellow
+          "#ff7b7b", // Light Red
+          "#1abc9c", // Turquoise
+          "#2ecc71", // Emerald Green
+          "#9b59b6", // Amethyst
+          "#f1c40f", // Sunflower Yellow
+          "#e67e22", // Carrot Orange
+          "#f39c12", // Orange
+          "#d35400", // Pumpkin
+          "#c0392b", // Alizarin Red
+          "#8e44ad", // Wisteria
+          "#2980b9", // Belize Hole Blue
+          "#34495e", // Wet Asphalt Gray
+          "#16a085", // Green Sea
+          "#27ae60", // Nephritis Green
+          "#8e44ad", // Amethyst Purple
+          "#2c3e50", // Midnight Blue
+          "#e74c3c", // Cinnabar Red
+          "#ecf0f1", // Clouds Light Gray
+          "#95a5a6", // Concrete Gray
+          "#bdc3c7", // Silver
+          "#7f8c8d", // Asbestos Gray
+          "#16a085", // Green Sea
+          "#f39c12", // Sunflower Orange
+          "#e67e22", // Carrot Orange
+          "#f1c40f", // Golden Yellow
+          "#8e44ad", // Violet Purple
+          "#2c3e50", // Blue Black
+        ],
+        borderColor: "#fff",
+        borderWidth: 2,
+        hoverOffset: 4,
+      },
+    ],
+  };
+
+  const pieChartOptions = {
+    responsive: true,
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function (context) {
+            return `${context.label}: ${context.raw} bookings`;
+          },
+        },
+      },
+    },
+  };
+
   if (!user) return <div>Loading...</div>;
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+      {/* Pi Chart */}
+      <div className="w-full max-w-md max-h-screen bg-white p-6 rounded-lg shadow-md mt-8">
+        <h1 className="text-2xl font-bold mb-4 text-center">
+          Spot Booking Statistics
+        </h1>
+        <Pie data={pieChartData} options={pieChartOptions} />
+      </div>
       <div className="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Profile Update */}
         <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
@@ -417,7 +510,7 @@ const Profile = () => {
                       </div>
                       <div>
                         <p className="font-bold text-sm">
-                          Rate: ${payment.rate}
+                          Rate: TK{payment.rate}
                         </p>
                         <p className="text-sm text-gray-500">
                           Time Slot: {payment.timeSlot}
@@ -427,6 +520,7 @@ const Profile = () => {
                         </p>
                       </div>
                       <div>
+                        {/* Form Start */}
                         <form
                           onSubmit={handleReviewSubmit}
                           className="flex flex-col gap-4"
@@ -461,6 +555,7 @@ const Profile = () => {
                             </button>
                           </label>
                         </form>
+                        {/* Form End */}
                       </div>
                     </div>
                   </li>
@@ -472,17 +567,19 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      {/* Payment History Chart */}
-      {user.role === "admin" && (
-        <div className="w-full max-w-md max-h-screen bg-white p-6 rounded-lg shadow-md mt-8">
-          <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md mt-8">
-            <h1 className="text-2xl font-bold mb-4 text-center">
-              Previous Bookings
-            </h1>
-            <Line data={paymentData} options={options} />
+      <div>
+        {/* Payment History Chart */}
+        {user.role === "admin" && (
+          <div className="w-full max-w-md max-h-screen bg-white p-6 rounded-lg shadow-md mt-8">
+            <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md mt-8">
+              <h1 className="text-2xl font-bold mb-4 text-center">
+                Previous Bookings
+              </h1>
+              <Line data={paymentData} options={options} />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

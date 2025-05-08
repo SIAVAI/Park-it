@@ -37,6 +37,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
+    // Payment Collection
     const paymentsCollection = client.db("park_it").collection("payments");
     app.post("/create-payment-intent", async (req, res) => {
       const { amount, spotId, userEmail, spotName } = req.body;
@@ -69,7 +70,7 @@ async function run() {
 
         //console.log("Payment Intent created:", paymentIntent);
       } catch (error) {
-        console.error("Stripe payment error:", error.message);
+        //console.error("Stripe payment error:", error.message);
         res.status(500).send({ error: error.message });
       }
     });
@@ -80,7 +81,7 @@ async function run() {
         const payments = await paymentsCollection.find({}).toArray();
         res.status(200).json(payments);
       } catch (error) {
-        console.error("Error fetching payment history:", error);
+        //console.error("Error fetching payment history:", error);
         res.status(500).send({ error: "Failed to fetch payment history." });
       }
     });
@@ -215,7 +216,7 @@ async function run() {
         if (!id) {
           return res.status(400).send({ error: "ID is missing" });
         }
-        console.log("Received ID:", id);
+        //console.log("Received ID:", id);
 
         const filter = { _id: new ObjectId(id) };
         const newReview = {

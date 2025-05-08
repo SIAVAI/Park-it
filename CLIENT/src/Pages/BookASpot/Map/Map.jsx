@@ -100,6 +100,26 @@ const Map = () => {
     }
   };
 
+  //   spots[0].reviews[0].rating
+
+  const calculateAverageRating = (reviews) => {
+    if (reviews.length === 0) return 0;
+    const totalRating = reviews.reduce(
+      (sum, review) => sum + parseFloat(review.rating),
+      0
+    );
+    return (totalRating / reviews.length).toFixed(2);
+  };
+
+  const getReviewText = (reviews) => {
+    return reviews.map((review, index) => (
+      <div key={index} className="text-sm text-gray-600 mt-1">
+        <p>"{review.reviewText}"</p>
+        <p className="text-xs text-gray-500">- {review.name}</p>
+      </div>
+    ));
+  };
+
   return (
     <div className="container mx-auto px-4 py-6">
       <h1 className="text-center text-3xl font-bold mb-4">
@@ -215,16 +235,21 @@ const Map = () => {
                     <p className="font-bold">
                       {spot.isAvailable ? "Available" : "Not Available"}
                     </p>
-                    <p>
-                      {spot.reviews.length === 0
-                        ? "No reviews yet"
-                        : ` ${Math.min(
-                            spot.reviews.reduce((s, n) => s + n, 0) /
-                              spot.reviews.length,
-                            5
-                          ).toFixed(1)} `}
-                      <LiaStarSolid className="text-yellow-500 inline" />
-                    </p>
+                    {spot.reviews.length === 0 ? (
+                      <div className="w-[50%] text-sm text-gray-600">
+                        <p>Sorry!! No Reviews yet. Be the first one!!😃</p>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col justify-start items-start">
+                        <p className="text-sm text-gray-600">Avg Rating</p>
+                        <div className="flex items-center">
+                          <p className="text-lg font-semibold">
+                            {calculateAverageRating(spot.reviews)}{" "}
+                          </p>
+                          <LiaStarSolid className="text-yellow-500 inline  text-lg" />
+                        </div>
+                      </div>
+                    )}
                     <div className="flex justify-between">
                       <Link
                         to={`/spot-details/${spot._id}`}
@@ -270,16 +295,27 @@ const Map = () => {
                       <p className="font-bold">
                         {spot.isAvailable ? "Available" : "Not Available"}
                       </p>
-                      <p>
-                        {spot.reviews.length === 0
-                          ? "No reviews yet"
-                          : ` ${Math.min(
-                              spot.reviews.reduce((s, n) => s + n, 0) /
-                                spot.reviews.length,
-                              5
-                            ).toFixed(1)} `}
-                        <LiaStarSolid className="text-yellow-500 inline" />
-                      </p>
+                      {/* Reviews Calculation */}
+                      {spot.reviews.length === 0 ? (
+                        <div className="w-[50%] text-sm text-gray-600">
+                          <p>Sorry!! No Reviews yet. Be the first one!!😃</p>
+                        </div>
+                      ) : (
+                        <div className="flex justify-between items-center">
+                          <div className="flex flex-col justify-center items-center gap-2">
+                            <p className="text-sm text-gray-600">Avg Rating</p>
+                            <div className="flex items-center">
+                              <p className="text-lg font-semibold">
+                                {calculateAverageRating(spot.reviews)}{" "}
+                              </p>
+                              <LiaStarSolid className="text-yellow-500 inline ml-2" />
+                            </div>
+                          </div>
+                          <div className="m-2 space-y-2 flex flex-col flex-wrap justify-around items-start">
+                            {getReviewText(spot.reviews)}
+                          </div>
+                        </div>
+                      )}
 
                       <div className="flex justify-between">
                         <Link

@@ -114,6 +114,24 @@ const SpotDetails = () => {
     }
   };
 
+  const calculateAverageRating = (reviews) => {
+    if (reviews.length === 0) return 0;
+    const totalRating = reviews.reduce(
+      (sum, review) => sum + parseFloat(review.rating),
+      0
+    );
+    return (totalRating / reviews.length).toFixed(2);
+  };
+
+  const getReviewText = (reviews) => {
+    return reviews.map((review, index) => (
+      <div key={index} className="text-sm text-gray-600 mt-1">
+        <p>"{review.reviewText}"</p>
+        <p className="text-xs text-gray-500">- {review.name}</p>
+      </div>
+    ));
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-5xl font-bold text-center mb-10 text-blue-600">
@@ -138,18 +156,23 @@ const SpotDetails = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-gray-700">Reviews:</span>
+            {/* Reviews Calculation */}
             {spot.reviews.length === 0 ? (
-              <p>No reviews yet</p>
+              <div className="w-[50%] text-sm text-gray-600">
+                <p>Sorry!! No Reviews yet. Be the first one!!😃</p>
+              </div>
             ) : (
-              <p className="text-xl gap-2">
-                Avg. Rating:{" "}
-                {Math.min(
-                  spot.reviews.reduce((s, n) => s + n, 0) / spot.reviews.length,
-                  5
-                ).toFixed(1)}
-                <LiaStarSolid className="text-yellow-500 inline text-xl m-2" />
-              </p>
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col justify-center items-center gap-2">
+                  <p className="text-sm text-gray-600">Avg Rating</p>
+                  <div className="flex items-center">
+                    <p className="text-lg font-semibold">
+                      {calculateAverageRating(spot.reviews)}{" "}
+                    </p>
+                    <LiaStarSolid className="text-yellow-500 inline ml-2" />
+                  </div>
+                </div>
+              </div>
             )}
           </div>
 
@@ -199,7 +222,7 @@ const SpotDetails = () => {
               className="w-full p-2 border rounded-md shadow-md focus:ring-2 focus:ring-[#00d0b3]"
             >
               <option value="hourly">Hourly</option>
-              <option value="daily">Daily</option>
+              {/* <option value="daily">Daily</option> */}
               <option value="weekly">Weekly</option>
               <option value="monthly">Monthly</option>
             </select>

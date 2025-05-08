@@ -10,7 +10,7 @@ const Statistics = () => {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all">
+          <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all flex flex-col justify-center items-center gap-4">
             <Typewriter
               textStyle={{
                 fontFamily: "Roboto, sans-serif",
@@ -25,7 +25,7 @@ const Statistics = () => {
             <p className="text-gray-600 mt-4">Users who love our app!</p>
           </div>
 
-          <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all">
+          <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all flex flex-col justify-center items-center gap-4">
             <Typewriter
               textStyle={{
                 fontFamily: "Roboto, sans-serif",
@@ -40,7 +40,7 @@ const Statistics = () => {
             <p className="text-gray-600 mt-4">Available across the country.</p>
           </div>
 
-          <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all">
+          <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all flex flex-col justify-center items-center gap-4">
             <Typewriter
               textStyle={{
                 fontFamily: "Roboto, sans-serif",
