@@ -31,7 +31,8 @@ const Map = () => {
     const fetchUserData = async () => {
       try {
         const { data } = await axios.get(
-          `https://parkit-one.vercel.app/users/${email}`
+          `https://parkit-one.vercel.app/users/${email}`,
+          { withCredentials: true }
         );
         setCustomer(data);
       } catch (error) {
@@ -42,7 +43,8 @@ const Map = () => {
     const fetchSpots = async () => {
       try {
         const response = await axios.get(
-          "https://parkit-one.vercel.app/parking"
+          "https://parkit-one.vercel.app/parking",
+          { withCredentials: true }
         );
 
         setSpots(response.data);

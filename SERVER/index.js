@@ -2,30 +2,32 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 require("dotenv").config();
-app.use(express.json());
+
 const { ObjectId } = require("mongodb");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY); //Secret key for backend
-
-const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "http://localhost:3001",
-    "https://localhost:9000",
-    "https://parkit-one.vercel.app",
-  ],
-  credentials: true,
-  optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
-
 const port = process.env.PORT || 9000;
 
-// Wl4yMs7jQ5ZZhhxa
-// park_it
+// CORS configuration
+const corsOptions = {
+  origin: [
+    "https://parkit-25e0a.web.app", // Allowed frontend domain
+    "https://parkit-one.vercel.app", // Backend URL
+    "https://parkit-25e0a.firebaseapp.com", // Firebase hosting URL
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true, // Allow credentials like cookies or tokens
+  optionsSuccessStatus: 200,
+};
+
+// Apply CORS middleware globally
+app.use(cors(corsOptions));
+
+// Express middleware for parsing JSON
+app.use(express.json());
 
 const { MongoClient, ServerApiVersion } = require("mongodb");
-const uri =
-  "mongodb+srv://park_it:Wl4yMs7jQ5ZZhhxa@cluster0.bruzsiw.mongodb.net/?appName=Cluster0";
+const uri = `mongodb+srv://${process.env.db_user}:${process.env.db_pass}@cluster0.bruzsiw.mongodb.net/?appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -109,7 +111,11 @@ async function run() {
       const email = req.params.email;
       const query = { email: email };
       const user = await userCollection.findOne(query);
-      res.send(user);
+
+      if (!user) {
+        return res.status(404).send({ error: "User not found" });
+      }
+      res.status(200).send(user);
     });
 
     app.post("/users", async (req, res) => {
@@ -304,9 +310,9 @@ async function run() {
 run().catch(console.dir);
 
 app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
+  console.log(`Server is running on port: ${port}🚀🚀🚀`);
 }); // Listen to the port
 
 app.get("/", (req, res) => {
-  res.send("Hello World! this server is running on 9000");
+  res.send("Hello World! this server is running on 9000🚀🚀🚀");
 });

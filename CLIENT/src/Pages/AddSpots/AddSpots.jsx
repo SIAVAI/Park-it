@@ -71,7 +71,8 @@ const AddSpots = () => {
     const fetchSpots = async () => {
       try {
         const response = await axios.get(
-          "https://parkit-one.vercel.app/parking"
+          "https://parkit-one.vercel.app/parking",
+          { withCredentials: true }
         );
         setSpots(response.data);
       } catch (error) {

@@ -115,7 +115,8 @@ const Profile = () => {
     const fetchSpots = async () => {
       try {
         const response = await axios.get(
-          `https://parkit-one.vercel.app/parking`
+          `https://parkit-one.vercel.app/parking`,
+          { withCredentials: true }
         );
         setSpots(response.data);
       } catch (error) {
@@ -134,7 +135,8 @@ const Profile = () => {
     const fetchPaymentHistory = async () => {
       try {
         const response = await axios.get(
-          "https://parkit-one.vercel.app/payment-history"
+          "https://parkit-one.vercel.app/payment-history",
+          { withCredentials: true }
         );
         setPaymentHistory(response.data);
       } catch (error) {
@@ -145,7 +147,8 @@ const Profile = () => {
     const fetchBookings = async () => {
       try {
         const response = await axios.get(
-          `https://parkit-one.vercel.app/bookings/${user?.email}`
+          `https://parkit-one.vercel.app/bookings/${user?.email}`,
+          { withCredentials: true }
         );
         setBookings(response.data);
       } catch (error) {
@@ -173,6 +176,7 @@ const Profile = () => {
       const updatedBookMark = user.bookMark.filter((spotId) => spotId !== id);
       const res = await axios.put(
         `https://parkit-one.vercel.app/users/${user?.email}`,
+        { withCredentials: true },
         { bookMark: updatedBookMark }
       );
       if (res.status === 200) {

@@ -16,7 +16,10 @@ const AllUsers = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("https://parkit-one.vercel.app/users");
+        const response = await axios.get(
+          "https://parkit-one.vercel.app/users",
+          { withCredentials: true }
+        );
         setUsers(response.data);
       } catch (error) {
         console.error("Error fetching users:", error);

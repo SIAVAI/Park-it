@@ -70,6 +70,7 @@ const SpotDetails = () => {
 
       const response = await axios.post(
         "https://parkit-one.vercel.app/create-payment-intent",
+        { withCredentials: true },
         {
           amount: rate,
           spotId: spot._id,

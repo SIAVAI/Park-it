@@ -65,8 +65,10 @@ const AuthProvider = ({ children }) => {
   const checkAndCreateUserInDatabase = async (email, name, photo) => {
     try {
       const response = await axios.get(
-        `https://parkit-one.vercel.app/users/${email}`
+        `https://parkit-one.vercel.app/users/${email}`,
+        { withCredentials: true }
       );
+      console.log(response.data);
       if (response.data) {
         return response.data;
       } else {
