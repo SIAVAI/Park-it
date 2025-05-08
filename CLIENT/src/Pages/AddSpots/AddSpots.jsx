@@ -70,7 +70,9 @@ const AddSpots = () => {
   useEffect(() => {
     const fetchSpots = async () => {
       try {
-        const response = await axios.get("http://localhost:9000/parking");
+        const response = await axios.get(
+          "https://parkit-one.vercel.app/parking"
+        );
         setSpots(response.data);
       } catch (error) {
         console.error("Error fetching parking spots:", error);
@@ -114,7 +116,7 @@ const AddSpots = () => {
         monthlyRate: parseFloat(monthlyRate),
       };
       const res = await axios.post(
-        "http://localhost:9000/parking",
+        "https://parkit-one.vercel.app/parking",
         newParkingSpot,
         {
           headers: { "Content-Type": "application/json" },
@@ -151,7 +153,9 @@ const AddSpots = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:9000/parking/${id}`);
+      const res = await axios.delete(
+        `https://parkit-one.vercel.app/parking/${id}`
+      );
       if (res.status !== 200) throw new Error("Failed to delete parking spot");
       toast.success("Parking spot deleted successfully!");
       setSpots(spots.filter((spot) => spot._id !== id));

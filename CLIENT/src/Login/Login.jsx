@@ -17,7 +17,7 @@ const Login = () => {
     try {
       const result = await signInWithGoogle();
       const { data } = await axios.post(
-        "http://localhost:9000/users",
+        "https://parkit-one.vercel.app/users",
         {
           email: result?.user?.email,
           name: result?.user?.displayName,
@@ -42,7 +42,9 @@ const Login = () => {
 
     try {
       const result = await signIn(email, password);
-      const { data } = await axios.get(`http://localhost:9000/users/${email}`);
+      const { data } = await axios.get(
+        `https://parkit-one.vercel.app/users/${email}`
+      );
 
       if (!data) {
         toast.error("User not found, please register.");

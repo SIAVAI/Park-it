@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       {
         path: "/users/:email",
         loader: ({ params }) =>
-          fetch(`http://localhost:9000/users/${params.email}`),
+          fetch(`https://parkit-one.vercel.app/users/${params.email}`),
         element: <Profile></Profile>,
       },
       {
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
       {
         path: "/spot-details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:9000/parking/${params.id}`),
+          fetch(`https://parkit-one.vercel.app/parking/${params.id}`),
         element: <SpotDetails></SpotDetails>,
       },
     ],

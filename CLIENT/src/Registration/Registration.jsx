@@ -37,7 +37,7 @@ const Registration = () => {
 
       setUser({ ...result?.user, displayName: name });
 
-      const { data } = await axios.post("http://localhost:9000/users", {
+      const { data } = await axios.post("https://parkit-one.vercel.app/users", {
         email: result?.user?.email,
         phone: phone || "N/A",
         name: result?.user?.displayName,

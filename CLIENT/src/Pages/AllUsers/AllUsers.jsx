@@ -16,7 +16,7 @@ const AllUsers = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:9000/users");
+        const response = await axios.get("https://parkit-one.vercel.app/users");
         setUsers(response.data);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -34,7 +34,7 @@ const AllUsers = () => {
     if (confirmDelete) {
       try {
         const response = await axios.delete(
-          `http://localhost:9000/users/${id}`
+          `https://parkit-one.vercel.app/users/${id}`
         );
         if (response.status === 200) {
           setUsers(users.filter((user) => user._id !== id));

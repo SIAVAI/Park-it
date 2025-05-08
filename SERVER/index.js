@@ -11,6 +11,7 @@ const corsOptions = {
     "http://localhost:5173",
     "http://localhost:3001",
     "https://localhost:9000",
+    "https://parkit-one.vercel.app",
   ],
   credentials: true,
   optionsSuccessStatus: 200,

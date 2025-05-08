@@ -69,7 +69,7 @@ const SpotDetails = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:9000/create-payment-intent",
+        "https://parkit-one.vercel.app/create-payment-intent",
         {
           amount: rate,
           spotId: spot._id,
@@ -99,7 +99,10 @@ const SpotDetails = () => {
           setPaymentSuccess(true);
 
           try {
-            await axios.post("http://localhost:9000/bookings", bookingDetails);
+            await axios.post(
+              "https://parkit-one.vercel.app/bookings",
+              bookingDetails
+            );
           } catch (error) {
             console.error("Booking Error:", error);
             toast.error("Error confirming booking. Please try again.");

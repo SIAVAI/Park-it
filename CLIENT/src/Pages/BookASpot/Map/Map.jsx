@@ -31,7 +31,7 @@ const Map = () => {
     const fetchUserData = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:9000/users/${email}`
+          `https://parkit-one.vercel.app/users/${email}`
         );
         setCustomer(data);
       } catch (error) {
@@ -41,7 +41,9 @@ const Map = () => {
     fetchUserData();
     const fetchSpots = async () => {
       try {
-        const response = await axios.get("http://localhost:9000/parking");
+        const response = await axios.get(
+          "https://parkit-one.vercel.app/parking"
+        );
 
         setSpots(response.data);
       } catch (error) {
@@ -86,7 +88,7 @@ const Map = () => {
     } else {
       const updatedBookmarks = [...bookmarks, id];
       axios
-        .put(`http://localhost:9000/users/${email}`, {
+        .put(`https://parkit-one.vercel.app/users/${email}`, {
           bookMark: updatedBookmarks,
         })
         .then(() => {

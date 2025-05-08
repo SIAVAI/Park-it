@@ -64,12 +64,14 @@ const AuthProvider = ({ children }) => {
 
   const checkAndCreateUserInDatabase = async (email, name, photo) => {
     try {
-      const response = await axios.get(`http://localhost:9000/users/${email}`);
+      const response = await axios.get(
+        `https://parkit-one.vercel.app/users/${email}`
+      );
       if (response.data) {
         return response.data;
       } else {
         const newUser = { email, name, photo, role: "customer" };
-        await axios.post("http://localhost:9000/users", newUser, {
+        await axios.post("https://parkit-one.vercel.app/users", newUser, {
           withCredentials: true,
         });
         return newUser;

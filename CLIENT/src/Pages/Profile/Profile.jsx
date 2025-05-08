@@ -69,7 +69,7 @@ const Profile = () => {
         photoURL: photoURL,
       };
       const res = await axios.put(
-        `http://localhost:9000/users/${user?.email}`,
+        `https://parkit-one.vercel.app/users/${user?.email}`,
         updatedUser
       );
       toast.success("Profile updated successfully!");
@@ -98,7 +98,7 @@ const Profile = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:9000/parking/${id}`,
+        `https://parkit-one.vercel.app/parking/${id}`,
         reviewData
       );
       toast.success("Review submitted successfully!");
@@ -114,7 +114,9 @@ const Profile = () => {
   useEffect(() => {
     const fetchSpots = async () => {
       try {
-        const response = await axios.get(`http://localhost:9000/parking`);
+        const response = await axios.get(
+          `https://parkit-one.vercel.app/parking`
+        );
         setSpots(response.data);
       } catch (error) {
         console.error("Error fetching spots:", error);
@@ -132,7 +134,7 @@ const Profile = () => {
     const fetchPaymentHistory = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:9000/payment-history"
+          "https://parkit-one.vercel.app/payment-history"
         );
         setPaymentHistory(response.data);
       } catch (error) {
@@ -143,7 +145,7 @@ const Profile = () => {
     const fetchBookings = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/bookings/${user?.email}`
+          `https://parkit-one.vercel.app/bookings/${user?.email}`
         );
         setBookings(response.data);
       } catch (error) {
@@ -170,7 +172,7 @@ const Profile = () => {
     try {
       const updatedBookMark = user.bookMark.filter((spotId) => spotId !== id);
       const res = await axios.put(
-        `http://localhost:9000/users/${user?.email}`,
+        `https://parkit-one.vercel.app/users/${user?.email}`,
         { bookMark: updatedBookMark }
       );
       if (res.status === 200) {
