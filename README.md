@@ -25,4 +25,20 @@
 - **Frontend:** React.js, Tailwind CSS, React-Leaflet for maps.
 - **Backend:** Node.js, Express, MongoDB for database management.
 - **Authentication:** Firebase for user authentication.
-- **Payment Integration:** Allows users to book parking spots using secure online payment methods.
+- **Payment Integration:** Strip for users to book parking spots using secure online payment methods.
+
+## Acknowledgements
+
+We would like to thank the following technologies and resources that have helped make this project possible:
+
+- **[React.js](https://reactjs.org/)**
+- **[Leaflet.js](https://leafletjs.com/)**
+- **[Tailwind CSS](https://tailwindcss.com/)**
+- **[MongoDB](https://www.mongodb.com/)**
+- **[Chart.js](https://www.chartjs.org/)**
+- **[React-Leaflet](https://react-leaflet.js.org/)**
+- **[Vercel](https://vercel.com/)**
+- **[Firebase](https://firebase.google.com/)**
+- **[axios](https://axios-http.com/)**
+- **[react-calendar](https://www.npmjs.com/package/react-calendar)**
+- **[React-Icons](https://react-icons.github.io/react-icons/)**
