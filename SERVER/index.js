@@ -12,13 +12,13 @@ const corsOptions = {
   origin: [
     "http://localhost:5173",
     "http://localhost:9000",
-    "https://parkit-25e0a.web.app", // Allowed frontend domain
-    "https://parkit-one.vercel.app", // Backend URL
-    "https://parkit-25e0a.firebaseapp.com", // Firebase hosting URL
+    "https://parkit-25e0a.web.app",
+    "https://parkit-one.vercel.app",
+    "https://parkit-25e0a.firebaseapp.com",
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true, // Allow credentials like cookies or tokens
+  credentials: true,
   optionsSuccessStatus: 200,
 };
 
