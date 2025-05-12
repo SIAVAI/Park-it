@@ -150,31 +150,34 @@ const Map = () => {
 
         {Object.keys(cities).map((city, index) => (
           <TabPanel key={index}>
-            <div className="filters mb-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="filters mb-6 px-4 sm:px-0">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Price Range */}
                 <div>
                   <label className="block text-sm font-medium text-gray-600 mb-2">
                     Price Range
                   </label>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2">
                     <input
                       type="number"
                       value={minPrice}
                       onChange={(e) => setMinPrice(e.target.value)}
                       min="0"
-                      className="w-full px-4 py-2 border rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                      placeholder="Min"
+                      className="w-full px-4 py-2 border rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
-                    -
                     <input
                       type="number"
                       value={maxPrice}
                       onChange={(e) => setMaxPrice(e.target.value)}
                       max="1500"
-                      className="w-full px-4 py-2 border rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                      placeholder="Max"
+                      className="w-full px-4 py-2 border rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>
 
+                {/* Availability */}
                 <div>
                   <label className="block text-sm font-medium text-gray-600 mb-2">
                     Availability
@@ -182,13 +185,14 @@ const Map = () => {
                   <select
                     value={availability}
                     onChange={(e) => setAvailability(e.target.value === "true")}
-                    className="w-full p-2 border rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                    className="w-full px-4 py-2 border rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value={true}>Available</option>
                     <option value={false}>Not Available</option>
                   </select>
                 </div>
 
+                {/* Minimum Reviews */}
                 <div>
                   <label className="block text-sm font-medium text-gray-600 mb-2">
                     Minimum Reviews
@@ -199,20 +203,21 @@ const Map = () => {
                     onChange={(e) => setMinReviews(e.target.value)}
                     min="0"
                     max="5"
-                    className="w-full p-2 border rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                    className="w-full px-4 py-2 border rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
-                <div className="col-span-3 text-center mt-4">
+                {/* Buttons */}
+                <div className="col-span-1 sm:col-span-2 lg:col-span-3 flex flex-col sm:flex-row justify-center gap-4 mt-6">
                   <button
                     onClick={handleFilterChange}
-                    className="btn btn-primary px-6 py-2 rounded-md shadow-md"
+                    className="bg-black hover:bg-green-400 text-white px-6 py-2 rounded-md shadow-md transition-all"
                   >
                     Apply Filters
                   </button>
                   <button
                     onClick={handleReset}
-                    className="btn btn-primary px-6 py-2 rounded-md shadow-md"
+                    className="bg-gray-600 hover:bg-green-400 text-white px-6 py-2 rounded-md shadow-md transition-all"
                   >
                     Reset
                   </button>
