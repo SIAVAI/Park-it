@@ -9,7 +9,7 @@ import Statistics from "./Statistics";
 const Home = () => {
   return (
     <div>
-      <div className="min-h-[calc(100vh-300px)] my-10">
+      <div className="min-h-[calc(100vh-300px)] my-10 overflow-hidden">
         <Header />
         <Statistics />
         <KeyFeatures />

@@ -24,7 +24,7 @@ const DiscountSection = () => {
         <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row justify-center items-center gap-2">
           {/* Weekly Discount */}
           <div
-            className="card w-96 bg-base-100 shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl neon-effect border-2 border-[#00d0b3] p-4"
+            className="card w-auto bg-base-100 shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl neon-effect border-2 border-[#00d0b3] p-4"
             data-aos="fade-up"
             data-aos-delay="300"
           >
@@ -99,7 +99,7 @@ const DiscountSection = () => {
 
           {/* Monthly Discount */}
           <div
-            className="card w-96 bg-base-100 shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl neon-effect border-2 border-[#00d0b3] p-4"
+            className="card w-auto bg-base-100 shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl neon-effect border-2 border-[#00d0b3] p-4"
             data-aos="fade-up"
             data-aos-delay="500"
           >
@@ -157,7 +157,7 @@ const DiscountSection = () => {
 
           {/* Same Spot Booking Discount */}
           <div
-            className="card w-96 bg-base-100 shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl neon-effect border-2 border-[#00d0b3] p-4"
+            className="card w-auto bg-base-100 shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl neon-effect border-2 border-[#00d0b3] p-4"
             data-aos="fade-up"
             data-aos-delay="700"
           >
