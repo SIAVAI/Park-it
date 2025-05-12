@@ -2,9 +2,7 @@
 
 **Park IT** is a modern web application designed to provide seamless parking spot reservation and management. This platform allows users to find, reserve, and manage parking spots based on their location, providing flexibility and convenience. The application also features user management, booking history, and a robust review system, making it an ideal tool for both users and parking spot owners.
 
----
-
-## Features
+**[Live Link Here -> 🔗](https://parkit-25e0a.web.app/)**
 
 ### User Features:
 
