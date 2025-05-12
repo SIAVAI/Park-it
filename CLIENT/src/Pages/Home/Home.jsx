@@ -9,12 +9,14 @@ import Statistics from "./Statistics";
 const Home = () => {
   return (
     <div>
-      <Header />
-      <Statistics />
-      <KeyFeatures />
-      <DiscountSection />
-      <HowItWorks />
-      <ReviewSection />
+      <div className="min-h-[calc(100vh-300px)] my-10">
+        <Header />
+        <Statistics />
+        <KeyFeatures />
+        <DiscountSection />
+        <HowItWorks />
+        <ReviewSection />
+      </div>
     </div>
   );
 };

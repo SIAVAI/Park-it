@@ -10,6 +10,8 @@ const port = process.env.PORT || 9000;
 // CORS configuration
 const corsOptions = {
   origin: [
+    "http://localhost:5173",
+    "http://localhost:9000",
     "https://parkit-25e0a.web.app", // Allowed frontend domain
     "https://parkit-one.vercel.app", // Backend URL
     "https://parkit-25e0a.firebaseapp.com", // Firebase hosting URL
