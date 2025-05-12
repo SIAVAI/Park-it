@@ -37,7 +37,10 @@ const AllUsers = () => {
     if (confirmDelete) {
       try {
         const response = await axios.delete(
-          `https://parkit-one.vercel.app/users/${id}`
+          `https://parkit-one.vercel.app/users/${id}`,
+          {
+            withCredentials: true,
+          }
         );
         if (response.status === 200) {
           setUsers(users.filter((user) => user._id !== id));

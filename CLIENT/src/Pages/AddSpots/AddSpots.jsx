@@ -121,6 +121,9 @@ const AddSpots = () => {
         newParkingSpot,
         {
           headers: { "Content-Type": "application/json" },
+        },
+        {
+          withCredentials: true,
         }
       );
       if (res.status !== 201) throw new Error("Failed to add parking spot");
@@ -155,7 +158,10 @@ const AddSpots = () => {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `https://parkit-one.vercel.app/parking/${id}`
+        `https://parkit-one.vercel.app/parking/${id}`,
+        {
+          withCredentials: true,
+        }
       );
       if (res.status !== 200) throw new Error("Failed to delete parking spot");
       toast.success("Parking spot deleted successfully!");

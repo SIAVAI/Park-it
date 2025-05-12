@@ -43,7 +43,10 @@ const Login = () => {
     try {
       const result = await signIn(email, password);
       const { data } = await axios.get(
-        `https://parkit-one.vercel.app/users/${email}`
+        `https://parkit-one.vercel.app/users/${email}`,
+        {
+          withCredentials: true,
+        }
       );
 
       if (!data) {

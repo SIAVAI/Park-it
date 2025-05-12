@@ -90,9 +90,15 @@ const Map = () => {
     } else {
       const updatedBookmarks = [...bookmarks, id];
       axios
-        .put(`https://parkit-one.vercel.app/users/${email}`, {
-          bookMark: updatedBookmarks,
-        })
+        .put(
+          `https://parkit-one.vercel.app/users/${email}`,
+          {
+            bookMark: updatedBookmarks,
+          },
+          {
+            withCredentials: true,
+          }
+        )
         .then(() => {
           setCustomer((prev) => ({ ...prev, bookMark: updatedBookmarks }));
           toast.success("Spot Bookmarked Successfully!");

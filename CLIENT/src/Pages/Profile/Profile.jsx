@@ -70,7 +70,10 @@ const Profile = () => {
       };
       const res = await axios.put(
         `https://parkit-one.vercel.app/users/${user?.email}`,
-        updatedUser
+        updatedUser,
+        {
+          withCredentials: true,
+        }
       );
       toast.success("Profile updated successfully!");
       setIsEditing(false);
@@ -99,7 +102,10 @@ const Profile = () => {
     try {
       const res = await axios.put(
         `https://parkit-one.vercel.app/parking/${id}`,
-        reviewData
+        reviewData,
+        {
+          withCredentials: true,
+        }
       );
       toast.success("Review submitted successfully!");
       setId();

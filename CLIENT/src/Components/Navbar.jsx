@@ -15,7 +15,10 @@ const Navbar = () => {
       if (user) {
         try {
           const { data } = await axios.get(
-            `https://parkit-one.vercel.app/users/${user?.email}`
+            `https://parkit-one.vercel.app/users/${user?.email}`,
+            {
+              withCredentials: true,
+            }
           );
 
           setIsLoggedIn(true);

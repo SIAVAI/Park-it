@@ -37,13 +37,19 @@ const Registration = () => {
 
       setUser({ ...result?.user, displayName: name });
 
-      const { data } = await axios.post("https://parkit-one.vercel.app/users", {
-        email: result?.user?.email,
-        phone: phone || "N/A",
-        name: result?.user?.displayName,
-        photo: result?.user?.photoURL,
-        role: "customer",
-      });
+      const { data } = await axios.post(
+        "https://parkit-one.vercel.app/users",
+        {
+          email: result?.user?.email,
+          phone: phone || "N/A",
+          name: result?.user?.displayName,
+          photo: result?.user?.photoURL,
+          role: "customer",
+        },
+        {
+          withCredentials: true,
+        }
+      );
       console.log(data);
 
       toast.success("Sign Up Successful!");
