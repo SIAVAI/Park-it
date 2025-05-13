@@ -85,6 +85,7 @@ const AllUsers = () => {
                   </Link>
                 </button>
               </div>
+
               <div className="card-actions mt-4 hover:scale-105 transition-transform duration-300 ease-in-out">
                 <button
                   onClick={() => handleDelete(user._id)}
